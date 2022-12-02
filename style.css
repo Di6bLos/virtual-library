@@ -2,8 +2,8 @@
 
 * {
     box-sizing: border-box;
-    /* margin: 0;
-    padding: 0; */
+    margin: 0;
+    padding: 0;
 	text-decoration: none;
     list-style: none;
 }
@@ -28,10 +28,24 @@ picture {
 
 h1 {
     text-align: center;
+    margin: 2rem;
 }
 
 .library {
     border: 2px solid gray;
     display: grid;
-    
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin: 0 1rem;
+    padding: 1rem;
+    gap: .5rem;
 }
+
+.book {
+    border: 1px solid lightslategray;
+    padding: 1rem;
+}
+
+.book > * {
+    margin: 1rem;
+}
+

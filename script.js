@@ -1,4 +1,12 @@
 'use strict'
+//DOM elements
+
+
+
+
+
+
+
 
 
 const myLibrary = [];
