@@ -34,7 +34,7 @@ h1 {
 .library {
     border: 2px solid gray;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, 200px);
     margin: 0 1rem;
     padding: 1rem;
     gap: .5rem;
