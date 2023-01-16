@@ -1,24 +1,32 @@
-/* eslint-disable no-unused-expressions */
+const bookForm = document.getElementById('book-form');
+const titleInput = document.getElementById('title-input');
+const authorInput = document.getElementById('author-input');
+const yearInput = document.getElementById('year-input');
+const readInput = document.getElementById('read-input');
+const resetBtn = document.getElementById('reset-btn');
 
-// DOM elements
+const library = [];
 
-const myLibrary = [];
-
-// Constructor function for creating a new Book
-function Book(title, author, numPages, readBook) {
-  this.title = title,
-  this.author = author,
-  this.numPages = numPages,
-  this.readBook = readBook;
+// Constructor function to create a new book
+function Book(title, author, year, read) {
+    this.title = title,
+    this.author = author,
+    this.year = year,
+    this.read = read
 }
 
-const redHood = new Book('Red riding Hood', 'Grimm', 3, true);
+bookForm.addEventListener('submit', (e)=> {
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const year = yearInput.value;
+    const read = readInput.value;
 
-// Function that adds the new Book to myLibrary array
-const addBook = (newBook) => {
-  myLibrary.push(newBook);
-};
 
-console.log(addBook(redHood));
+    const newBook = new Book(title, author, year, read);
+    library.push(newBook);
+    e.preventDefault();
+    resetBtn.click();
+})
 
-console.log(myLibrary);
+
+

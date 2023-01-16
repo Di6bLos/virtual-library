@@ -49,3 +49,9 @@ h1 {
     margin: 1rem;
 }
 
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
