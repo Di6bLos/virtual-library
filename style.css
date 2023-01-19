@@ -55,3 +55,10 @@ h1 {
     margin: 1rem;
 }
 
+.book-author::before {
+    content: "By: ";
+}
+
+.book-year::before {
+    content: "Published: ";
+}

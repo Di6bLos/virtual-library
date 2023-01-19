@@ -5,19 +5,18 @@ const bookForm = document.getElementById('book-form');
 const titleInput = document.getElementById('title-input');
 const authorInput = document.getElementById('author-input');
 const yearInput = document.getElementById('year-input');
-const readInput = document.getElementById('read-input');
 const resetBtn = document.getElementById('reset-btn');
 const cardContainer = document.getElementById('card-container');
 
 // Array that will store the books created in the form
 const library = [];
+const seenTitles = [];
 
 // Constructor function to create a new book
-function Book(title, author, year, read) {
+function Book(title, author, year) {
     this.title = title,
     this.author = author,
-    this.year = year,
-    this.read = read
+    this.year = year
 }
 
 // Iterates over the library array,
@@ -25,7 +24,10 @@ function Book(title, author, year, read) {
 const printBooks = () => {
     // eslint-disable-next-line no-plusplus
     for(let i = 0; i < library.length; i++) {
-        // Creates a div that wraps around the content
+        const book = library[i];
+
+        if(seenTitles.includes(book.title) === false) {
+                  // Creates a div that wraps around the content
         const bookCard = document.createElement('div');
         bookCard.classList.add('book');
         cardContainer.appendChild(bookCard);
@@ -35,10 +37,12 @@ const printBooks = () => {
         bookCard.appendChild(bookTitle);
         // Author of the book
         const bookAuthor = document.createElement('p');
+        bookAuthor.classList.add('book-author');
         bookAuthor.innerHTML = library[i].author;
         bookCard.appendChild(bookAuthor);
         // Year it was published
         const bookYear = document.createElement('p');
+        bookYear.classList.add('book-year');
         bookYear.innerHTML = library[i].year;
         bookCard.appendChild(bookYear);
         // A checkbox for if it has been read or not
@@ -46,12 +50,22 @@ const printBooks = () => {
         const bookReadCheckBox = document.createElement('input');
         bookReadLabel.innerHTML = 'Read Book?';
         bookReadCheckBox.setAttribute('type', 'checkbox');
-        bookReadCheckBox.value = library[i].read;
+
         bookCard.appendChild(bookReadLabel);
         bookCard.appendChild(bookReadCheckBox);
 
-        
-        
+        // Button to delete the current card
+        const deleteCardBtn = document.createElement('button');
+        deleteCardBtn.innerHTML = "Delete Book";
+        bookCard.appendChild(deleteCardBtn);
+        // Adding the logic to the delete button
+        deleteCardBtn.addEventListener('click', ()=> {
+
+        });
+
+        seenTitles.push(book.title);
+        } 
+
 
 
     }
@@ -64,10 +78,9 @@ bookForm.addEventListener('submit', (e)=> {
     const title = titleInput.value;
     const author = authorInput.value;
     const year = yearInput.value;
-    const read = readInput.value;
 
     // Uses the 'Book' constructor function to create a new book object based on the input values
-    const newBook = new Book(title, author, year, read);
+    const newBook = new Book(title, author, year);
     library.push(newBook);
     e.preventDefault();
     resetBtn.click();
@@ -76,4 +89,10 @@ bookForm.addEventListener('submit', (e)=> {
 })
 
 
+// Adding example books
+const lordOfRings = new Book('The Fellowship of the Ring', 'J.R.R Tolien', 1954);
+const ninteen84 = new Book('1984', 'George Orwell', 1949);
+const readyPlayer1 = new Book('Ready Player One', 'Ernest Cline', 2011);
 
+library.push(lordOfRings, ninteen84, readyPlayer1);
+printBooks();
