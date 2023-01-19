@@ -7,7 +7,6 @@ const authorInput = document.getElementById('author-input');
 const yearInput = document.getElementById('year-input');
 const resetBtn = document.getElementById('reset-btn');
 const cardContainer = document.getElementById('card-container');
-
 // Array that will store the books created in the form
 const library = [];
 const seenTitles = [];
@@ -57,10 +56,18 @@ const printBooks = () => {
         // Button to delete the current card
         const deleteCardBtn = document.createElement('button');
         deleteCardBtn.innerHTML = "Delete Book";
+        deleteCardBtn.classList.add('delete-btn');
         bookCard.appendChild(deleteCardBtn);
         // Adding the logic to the delete button
         deleteCardBtn.addEventListener('click', ()=> {
-
+            /* Assinging the index of the book object 
+            in the library array that corresponds to the 
+            current cards book title. */
+            const deleteIndex = library.findIndex(obj => obj.title === bookTitle.innerHTML);
+            // Uses that index to remove the object from the arrays and the DOM
+            library.splice(deleteIndex, 1);
+            bookCard.remove();
+            seenTitles.splice(deleteIndex, 1);
         });
 
         seenTitles.push(book.title);
